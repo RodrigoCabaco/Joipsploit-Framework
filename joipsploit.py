@@ -39,12 +39,12 @@ def startListener(listener, lhost, lport):
     os.system(f'python {listener}.py {lhost} {lport}')
 
 currentWorkspace = "jpsploit"
-
+payload = ""
+lport = 0
+host =""
 while True:
     cmd = input(green+f'({currentWorkspace}) +> ' +white)
-    payload = ""
-    lport = 0
-    lhost =""
+    
     if cmd == 'show payloads':
         showPayloads()
     elif cmd == 'help':

