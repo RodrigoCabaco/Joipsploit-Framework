@@ -20,7 +20,7 @@ def receiveMessage(client):
     while True:
         message = client.recv(2048).decode()
         print("\n"+message)
-        print(f"{red}({os.getlogin()}@joipsploit){white}> ")
+        print(f"{red}({os.getlogin()}@joipsploit){white}> ",end='')
 
 
 def sendMessage():
