@@ -16,8 +16,7 @@ def clear():
 
 def showPayloads():
     for payload in payloads:
-        print(f'[{green}+{white}] {payload}')
-
+        print(f"[{green}+{white}] {payload}")
 def showHelp():
     print("""
 Commands:
@@ -31,12 +30,12 @@ Commands:
 
 def generatePayload(payload, lhost, lport):
     try:
-        os.system(f'python Payloads/{payload.split("/")[0]}/generate_{payload.split("/")[1]}.pyw {lhost} {lport}')
+        os.system(f'python3 Payloads/{payload.split("/")[0]}/generate_{payload.split("/")[1]}.pyw {lhost} {lport}')
     except:
         print('Problem on payload generation, verify your inputs')
 #TODO - ADD LISTENER GENERATOR ETC AND ADD PYINSTALLER COMAPTIBILITY
 def startListener(listener, lhost, lport):
-    os.system(f'python {listener}.py {lhost} {lport}')
+    os.system(f'python3 {listener}.py {lhost} {lport}')
 
 currentWorkspace = "jpsploit"
 payload = ""
